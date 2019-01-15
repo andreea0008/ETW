@@ -55,4 +55,5 @@ DISTFILES += \
     qml/Orders.qml \
     qml/AddOrderItem.qml \
     qml/NewOrderPage1.qml \
+    qml/NewOrderPage2.qml \
     qml/jsScripts/functonsForQml.js

@@ -9,16 +9,22 @@ Rectangle
     anchors.right: parent.right
     height: Theme.listItem.minimumHeight
     property bool visibleBackArrow: false
+    property bool visibleAddButton: true
 
     signal addNewOrder()
-    
-    Rectangle{
-        id: rectForImage
+    signal back()
+    Item
+    {
+        id: itemAddButton
         anchors.right: parent.right
         anchors.rightMargin: parent.height / 2
         anchors.verticalCenter: parent.verticalCenter
         height: parent.height * 0.6
         width: height
+        visible: true
+    Rectangle{
+        id: rectForImage
+        anchors.fill: parent
         color: "white"
         radius: width /2
     }
@@ -34,10 +40,8 @@ Rectangle
     
     Rectangle{
         id: rectMain
-        anchors.right: parent.right
-        anchors.rightMargin: parent.height / 2
-        anchors.verticalCenter: parent.verticalCenter
-        height: parent.height * 0.6
+        anchors.centerIn: parent
+        height: parent.height
         width: height
         color: "white"
         radius: width /2
@@ -63,7 +67,7 @@ Rectangle
             }
         }
     }
-
+}
 
     //back arrow
 Item
@@ -113,6 +117,7 @@ Item
                 onReleased: {
                     rectMainForBackArrow.color = "#fff"
                     console.log("You wanna back")
+                    back()
                     stackViewOrders.pop()
                 }
             }

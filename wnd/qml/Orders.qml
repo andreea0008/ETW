@@ -9,9 +9,10 @@ Page {
     AddOrderItem {
         id: addOrderItem
         visibleBackArrow: stackViewOrders.depth > 1
+        visibleAddButton: stackViewOrders.depth < 2
+
         onAddNewOrder:
         {
-            console.log("add new oreder")
             stackViewOrders.push(Qt.resolvedUrl("NewOrderPage1.qml"))
         }
     }
@@ -42,8 +43,8 @@ Page {
                     color: "#0d0d0d"
                     width: parent.width
                     isCanRemove: true
-                    onPushToStackView:
-                        stackViewOrders.push(Qt.resolvedUrl("LoginPage.qml"))
+//                    onPushToStackView:
+//                        stackViewOrders.push(Qt.resolvedUrl("LoginPage.qml"))
                 }
             }
 
