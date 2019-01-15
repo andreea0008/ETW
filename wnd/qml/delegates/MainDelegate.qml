@@ -10,6 +10,7 @@ Rectangle{
 
     property bool isRemoveRectVisible: false
     property bool isCanRemove: false
+    property alias refRectPriority: rectPriority.visible
 
     signal pushToStackView()
 

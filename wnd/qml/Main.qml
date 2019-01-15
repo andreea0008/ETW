@@ -1,7 +1,8 @@
 import VPlayApps 1.0
+import VPlay 2.0
 import QtQuick 2.0
 
-App {
+GameWindow {
     // You get free licenseKeys from https://v-play.net/licenseKey
     // With a licenseKey you can:
     //  * Publish your games & apps for the app stores

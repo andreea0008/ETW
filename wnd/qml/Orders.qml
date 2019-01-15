@@ -37,12 +37,14 @@ Page {
                 height: parent.height
                 model: 10
                 clip: true
+                spacing: 1
 
                 delegate: MainDelegate {
                     id: delegate
                     color: "#0d0d0d"
                     width: parent.width
                     isCanRemove: true
+                    refRectPriority: false
 //                    onPushToStackView:
 //                        stackViewOrders.push(Qt.resolvedUrl("LoginPage.qml"))
                 }
