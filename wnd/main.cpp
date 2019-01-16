@@ -2,7 +2,8 @@
 #include <VPApplication>
 
 #include <QQmlApplicationEngine>
-
+#include <QQmlContext>
+#include "orderscontroller.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,6 +27,8 @@ int main(int argc, char *argv[])
     // vplay.setMainQmlFileName(QStringLiteral("qrc:/qml/Main.qml"));
 
     engine.load(QUrl(vplay.mainQmlFileName()));
+    OrdersController orderController(&engine);
+    engine.rootContext()->setContextProperty("OrderController", &orderController);
 
     return app.exec();
 }

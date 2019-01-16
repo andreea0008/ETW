@@ -21,6 +21,9 @@ Page {
         id: stackViewOrders
         anchors.fill: parent
         anchors.topMargin: addOrderItem.height
+
+        signal parametersOrder(var type, var typeWindow, var width, var height, var description);
+
         onVisibleChanged:
         {
             if(!visible) releaseStack(stackViewOrders)
@@ -35,7 +38,7 @@ Page {
                 id: list
                 width: parent.width
                 height: parent.height
-                model: 10
+                model: OrderController
                 clip: true
                 spacing: 1
 

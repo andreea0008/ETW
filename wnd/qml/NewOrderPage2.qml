@@ -12,6 +12,7 @@ Page {
     property int margin: pageNewOrder2.width * 0.1
     property int spaceHeight: Theme.listItem.minimumHeight / 2
     property int minimumWidthText: width * 0.2
+
     Rectangle
     {
         anchors.fill: parent
@@ -47,7 +48,8 @@ Page {
             onClicked:
             {
                 addOrderItem.visibleAddButton = false
-                stackViewOrders.push(Qt.resolvedUrl("NewOrderPage3.qml"))
+
+                stackViewOrders.push(Qt.resolvedUrl("NewOrderPage3.qml"), {test: "tttttt"})
             }
         }
 
