@@ -30,7 +30,8 @@ RESOURCES += #    resources.qrc # uncomment for publishing
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    orderscontroller.cpp
+    orderscontroller.cpp \
+    orders.cpp
 
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
@@ -61,4 +62,5 @@ DISTFILES += \
     qml/jsScripts/functonsForQml.js
 
 HEADERS += \
-    orderscontroller.h
+    orderscontroller.h \
+    orders.h

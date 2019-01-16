@@ -24,6 +24,7 @@ Page {
             anchors.margins: margin
             AppText
             {
+                id: orderId
                 text: parent.generateOrderNumber()
             }
 
@@ -44,10 +45,12 @@ Page {
 
                 TextField
                 {
+                    id: nameClientTextField
                     Layout.fillWidth: true
                     color: "white"
                     placeholderText: "Name client"
                     background: TextFieldStayle {}
+                    onTextChanged: orderId.text = parent.parent.generateOrderNumber();
                 }
             }
 
@@ -68,6 +71,7 @@ Page {
 
                 TextField
                 {
+                    id: streetTextField
                     Layout.fillWidth: true
                     color: "white"
                     placeholderText: "Street of client"
@@ -93,6 +97,7 @@ Page {
 
                 TextField
                 {
+                    id: cityTextField
                     Layout.fillWidth: true
                     placeholderText: "City of client"
                     color: "white"
@@ -117,6 +122,7 @@ Page {
 
                 TextField
                 {
+                    id: phoneTextField
                     Layout.fillWidth: true
                     color: "white"
                     placeholderText: "+1-333-444-5555"
@@ -154,6 +160,9 @@ Page {
 
                 onClicked:
                 {
+                    OrderController.addOrder(orderId.text, nameClientTextField.text,
+                                             cityTextField.text, streetTextField.text,
+                                             phoneTextField.text)
                     addOrderItem.visibleAddButton = false
                     stackViewOrders.push(Qt.resolvedUrl("NewOrderPage2.qml"))
                 }
@@ -163,7 +172,7 @@ Page {
             {
                 var today = new Date();
                 var dd = today.getDate();
-                var textOrder = "Order #: " + new Date().toJSON().slice(0,10).replace(/-/g,'/');
+                var textOrder = "Order #: " + new Date().toJSON().slice(0,10).replace(/-/g,'/') + nameClientTextField.text;
                 return textOrder
             }
         }

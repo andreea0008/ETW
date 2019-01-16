@@ -48,12 +48,10 @@ Page {
                     width: parent.width
                     isCanRemove: true
                     refRectPriority: false
-//                    onPushToStackView:
-//                        stackViewOrders.push(Qt.resolvedUrl("LoginPage.qml"))
+                    client: Name
+                    address: City + " " + Street
                 }
             }
-
-
         }
         function releaseStack(stackView){
             if(stackView.depth > 1){

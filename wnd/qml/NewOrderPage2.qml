@@ -7,11 +7,13 @@ import QtQuick.Controls.Styles 1.4
 import "delegates"
 import "styles"
 import "components"
+
 Page {
     id: pageNewOrder2
     property int margin: pageNewOrder2.width * 0.1
     property int spaceHeight: Theme.listItem.minimumHeight / 2
     property int minimumWidthText: width * 0.2
+
 
     Rectangle
     {
@@ -48,8 +50,7 @@ Page {
             onClicked:
             {
                 addOrderItem.visibleAddButton = false
-
-                stackViewOrders.push(Qt.resolvedUrl("NewOrderPage3.qml"), {test: "tttttt"})
+                stackViewOrders.push(Qt.resolvedUrl("NewOrderPage3.qml"))
             }
         }
 
@@ -62,7 +63,7 @@ Page {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-            model: 10
+            model: 1
             clip: true
             delegate: MainDelegate {
                 id: delegate

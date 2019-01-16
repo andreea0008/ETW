@@ -14,9 +14,7 @@ Page {
     property int margin: pageNewOrder2.width * 0.1
     property int spaceHeight: Theme.listItem.minimumHeight / 2
     property int minimumWidthText: width * 0.2
-
-    property string test: ""
-
+    property string idOrder: ""
     Rectangle
     {
         anchors.fill: parent
@@ -45,6 +43,7 @@ Page {
                     model: ["Vinyl window", "Entry door", "Patio door", "Garage door"]
                 }
             }
+
             Item{
                 visible: typeWindowOrDoor.currentIndex == 0
                 height: spaceHeight
@@ -180,9 +179,6 @@ Page {
 
                     onClicked:
                     {
-                        parametersOrder(typeWindowOrDoor.currentText, typeWindowComboBox.currentText, widthTextField.text,
-                                        heightTextField.text, descriptionTextArea.text)
-                        console.log(test)
                         stackViewOrders.pop()
                     }
                 }

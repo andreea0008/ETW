@@ -11,6 +11,8 @@ Rectangle{
     property bool isRemoveRectVisible: false
     property bool isCanRemove: false
     property alias refRectPriority: rectPriority.visible
+    property string client: "CLIENT"
+    property string address: "Address"
 
     signal pushToStackView()
 
@@ -36,25 +38,26 @@ Rectangle{
             }
             
         }
+
         Column{
             id: column
             anchors.left: itemPriority.right
             anchors.right: parent.right
-            height: dateAppText.height + addressAppText.height
+            height: nameAppText.height + addressAppText.height
             AppText
             {
-                id: dateAppText
+                id: nameAppText
                 height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
-                text: "date install"
                 color: "white"
+                text: client
             }
             
             AppText
             {
                 id: addressAppText
                 height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
-                text: "address install"
                 color: "white"
+                text: address
             }
         }
         MouseArea{

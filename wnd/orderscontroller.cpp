@@ -12,12 +12,6 @@ OrdersController::OrdersController(QObject *parent)
     roles_[Width] = "Width";
     roles_[Height] = "Height";
     roles_[Description] = "Description";
-
-    orders_.push_back(new Order());
-    orders_.push_back(new Order());
-    orders_.push_back(new Order());
-    orders_.push_back(new Order());
-
 }
 
 OrdersController::~OrdersController()
@@ -54,15 +48,10 @@ QVariant OrdersController::data(const QModelIndex &index, int role) const
     auto currentOrder = orders_[index.row()];
 
     switch (role) {
-    case Name: return currentOrder->clientData.name;
-    case City: return currentOrder->clientData.city;
-    case Street: return currentOrder->clientData.street;
-    case Phone: return currentOrder->clientData.phone;
-    case Type: return currentOrder->type;
-    case TypeWindow: return currentOrder->typeWindow;
-    case Width: return currentOrder->width;
-    case Height: return currentOrder->height;
-    case Description: return currentOrder->description;
+    case Name: return currentOrder->client.name;
+    case City: return currentOrder->client.city;
+    case Street: return currentOrder->client.street;
+    case Phone: return currentOrder->client.phone;
     }
 
     return QVariant();
@@ -73,20 +62,16 @@ QHash<int, QByteArray> OrdersController::roleNames() const
     return roles_;
 }
 
-void OrdersController::addOrder(QString name, QString city, QString street, QString phone, QString type,
-                                QString typeWindow, QString width, QString height, QString description)
+void OrdersController::addOrder(QString idOrder, QString name, QString city, QString street, QString phone)
 {
     beginInsertRows(QModelIndex(), orders_.size(), orders_.size());
-    Order * newOrder = new Order();
-    newOrder->clientData.name = name;
-    newOrder->clientData.city = city;
-    newOrder->clientData.street = street;
-    newOrder->clientData.phone = phone;
-    newOrder->type = type;
-    newOrder->typeWindow = typeWindow;
-    newOrder->width = width;
-    newOrder->height = height;
-    newOrder->description = description;
+    Order *order = new Order();
+    order->idOrder = idOrder.toInt();
+    order->client.name = name;
+    order->client.city = city;
+    order->client.street = street;
+    order->client.phone = phone;
+    orders_.push_back(order);
     endInsertRows();
 }
 
