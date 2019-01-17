@@ -32,6 +32,7 @@ class AllOrders
     void operator =(AllOrders const&) = delete;
     static AllOrders *instance;
     QVector<Order*> orders;
+    int currentIndex_;
 
 public:
     static AllOrders *Instance()
@@ -41,5 +42,8 @@ public:
         return instance;
     }
 
+    void addNewOrder(Order *order);
     QVector<Order *> getOrders() const;
+    int getCurrentIndex() const;
+    void setCurrentIndex(int currentIndex);
 };

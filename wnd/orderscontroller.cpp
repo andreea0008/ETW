@@ -1,4 +1,5 @@
 #include "orderscontroller.h"
+#include <QDebug>
 
 OrdersController::OrdersController(QObject *parent)
     : QAbstractListModel(parent)
@@ -7,6 +8,7 @@ OrdersController::OrdersController(QObject *parent)
     roles_[City] = "City";
     roles_[Street] = "Street";
     roles_[Phone] = "Phone";
+    roles_[Address] = "Address";
     roles_[Type] = "Type";
     roles_[TypeWindow] = "TypeWindow";
     roles_[Width] = "Width";
@@ -52,6 +54,7 @@ QVariant OrdersController::data(const QModelIndex &index, int role) const
     case City: return currentOrder->client.city;
     case Street: return currentOrder->client.street;
     case Phone: return currentOrder->client.phone;
+    case Address: return QString("%1 %2").arg(currentOrder->client.street).arg(currentOrder->client.city);
     }
 
     return QVariant();
@@ -72,6 +75,23 @@ void OrdersController::addOrder(QString idOrder, QString name, QString city, QSt
     order->client.street = street;
     order->client.phone = phone;
     orders_.push_back(order);
+    AllOrders::Instance()->addNewOrder(order);
+    AllOrders::Instance()->setCurrentIndex(AllOrders::Instance()->getOrders().size() -1);
     endInsertRows();
+}
+
+int OrdersController::currentInderOrder() const
+{
+    return currentInderOrder_;
+}
+
+void OrdersController::setCurrentInderOrder(int currentInderOrder)
+{
+    if (currentInderOrder_ == currentInderOrder)
+        return;
+    qDebug() << "Set cuurent index " << currentInderOrder;
+    AllOrders::Instance()->setCurrentIndex(currentInderOrder);
+    currentInderOrder_ = currentInderOrder;
+    emit currentInderOrderChanged(currentInderOrder_);
 }
 

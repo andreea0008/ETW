@@ -4,6 +4,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "orderscontroller.h"
+#include "decoratecontroller.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,7 +19,6 @@ int main(int argc, char *argv[])
 
     // use this during development
     // for PUBLISHING, use the entry point below
-    vplay.setMainQmlFileName(QStringLiteral("qml/Main.qml"));
 
     // use this instead of the above call to avoid deployment of the qml files and compile them into the binary with qt's resource system qrc
     // this is the preferred deployment option for publishing games to the app stores, because then your qml files and js files are protected
@@ -26,9 +26,14 @@ int main(int argc, char *argv[])
     // also see the .pro file for more details
     // vplay.setMainQmlFileName(QStringLiteral("qrc:/qml/Main.qml"));
 
-    engine.load(QUrl(vplay.mainQmlFileName()));
     OrdersController orderController(&engine);
+    DecorateController decorationController(&engine);
+
     engine.rootContext()->setContextProperty("OrderController", &orderController);
+    engine.rootContext()->setContextProperty("DecorationController", &decorationController);
+
+    vplay.setMainQmlFileName(QStringLiteral("qml/Main.qml"));
+    engine.load(QUrl(vplay.mainQmlFileName()));
 
     return app.exec();
 }

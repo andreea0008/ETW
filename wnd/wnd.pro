@@ -31,7 +31,8 @@ RESOURCES += #    resources.qrc # uncomment for publishing
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
     orderscontroller.cpp \
-    orders.cpp
+    orders.cpp \
+    decoratecontroller.cpp
 
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
@@ -55,12 +56,16 @@ macx {
 DISTFILES += \
     qml/Navi.qml \
     qml/Orders.qml \
+    qml/Jobs.qml \
     qml/AddOrderItem.qml \
     qml/NewOrderPage1.qml \
     qml/NewOrderPage2.qml \
     qml/NewOrderPage3.qml \
+    qml/delegates/DecorationDelegate.qml
+    qml/delegates/JobDelegate.qml
     qml/jsScripts/functonsForQml.js
 
 HEADERS += \
     orderscontroller.h \
-    orders.h
+    orders.h \
+    decoratecontroller.h
