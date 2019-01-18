@@ -12,6 +12,7 @@ Page {
         visibleBackArrow: stackViewOrders.depth > 1
         visibleAddButton: stackViewOrders.depth < 2
 
+        onBack: stackViewOrders.pop()
         onAddNewOrder:
         {
             stackViewOrders.push(Qt.resolvedUrl("NewOrderPage1.qml"))
@@ -24,6 +25,7 @@ Page {
         anchors.topMargin: addOrderItem.height
 
         signal parametersOrder(var type, var typeWindow, var width, var height, var description);
+
 
         onVisibleChanged:
         {

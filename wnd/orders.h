@@ -27,7 +27,7 @@ struct Order
 
 class AllOrders
 {
-    AllOrders(){}
+    AllOrders();
     AllOrders(AllOrders&) = delete ;
     void operator =(AllOrders const&) = delete;
     static AllOrders *instance;
@@ -38,7 +38,7 @@ public:
     static AllOrders *Instance()
     {
         if(instance == nullptr)
-            instance = new AllOrders;
+            instance = new AllOrders();
         return instance;
     }
 

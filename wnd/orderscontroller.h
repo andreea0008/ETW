@@ -7,7 +7,7 @@
 class OrdersController : public QAbstractListModel
 {
     Q_OBJECT
-    QVector<Order*> orders_;
+    QVector<Order*> *orders_;
     QHash<int, QByteArray> roles_;
     Q_PROPERTY(int currentInderOrder READ currentInderOrder WRITE setCurrentInderOrder NOTIFY currentInderOrderChanged)
     int currentInderOrder_;

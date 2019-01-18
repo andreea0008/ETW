@@ -15,11 +15,10 @@ GameWindow {
     onInitTheme: {
          // Set the status bar style to white (light style)
          Theme.colors.statusBarStyle = Theme.colors.statusBarStyleWhite
-
-         // Set the navigation bar background to blue
-         Theme.navigationBar.backgroundColor = "black"
+//          Set the navigation bar background to blue
+         Theme.navigationBar.backgroundColor = "#2b2b2b"
          Theme.navigationBar.titleColor = "white"
-         Theme.navigationBar.dividerColor = "black"
+         Theme.navigationBar.dividerColor = "#2b2b2b"
 
          // Set the background color, which is used as background color of pages
          Theme.colors.backgroundColor = "#222"
@@ -30,14 +29,14 @@ GameWindow {
         Theme.normalFont = normalFont
        }
 
-//    LoginPage
-//    {
-//        onLoginSucceeded: mainNavigationStack.visible = true
-//    }
+    LoginPage
+    {
+        onLoginSucceeded: mainNavigationStack.visible = true
+    }
 
     NavigationStack {
         id: mainNavigationStack
-            visible: true
+        visible: false
         Navi
         {
             id: navi

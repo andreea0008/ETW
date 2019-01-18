@@ -25,14 +25,13 @@ Page {
             icon: IconType.mailforward
             ListPage {
                 title: parent.title
-                emptyText.text: qsTr("No contacts.")
+                emptyText.text: qsTr("In process...")
             }
         }
 
         NavigationItem{
-            title: "Add order"
+            title: "Order"
             icon: IconType.thlarge
-            onActiveChanged:  console.log("active focus change")
             Orders
             {
 
@@ -43,6 +42,10 @@ Page {
             id: settingsItem
             title: qsTr("Settings")
             icon: IconType.cog
+            ListPage {
+                title: parent.title
+                emptyText.text: qsTr("In process...")
+            }
         }
     }
 }

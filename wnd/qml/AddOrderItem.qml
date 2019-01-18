@@ -118,7 +118,6 @@ Item
                     rectMainForBackArrow.color = "#fff"
                     console.log("You wanna back")
                     back()
-                    stackViewOrders.pop()
                 }
             }
         }

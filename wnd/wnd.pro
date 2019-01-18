@@ -57,6 +57,7 @@ DISTFILES += \
     qml/Navi.qml \
     qml/Orders.qml \
     qml/Jobs.qml \
+    qml/JobsPotential.qml \
     qml/AddOrderItem.qml \
     qml/NewOrderPage1.qml \
     qml/NewOrderPage2.qml \

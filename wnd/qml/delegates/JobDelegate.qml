@@ -3,6 +3,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 import QtQuick.Layouts 1.3
+import "../components"
 
 Rectangle{
     id: delegate
@@ -45,45 +46,52 @@ Rectangle{
             id: column
             anchors.left: itemPriority.right
             anchors.right: parent.right
-            height: nameAppText.height + addressAppText.height + phoneAppText.height
-            RowLayout
-            {
-                height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
-                Layout.fillWidth: true
-
-                AppText
-                {
-                    id: nameAppText
-                    height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
-                    color: "white"
-                    text: client
-                    font.bold: true
-                }
+            height: nameCustomer.height * 3
+            InfoCustomerComponent {
+                id: nameCustomer
+                anchors.left: parent.left
+                anchors.right: parent.right
+                sourceImage: "../images/avatar.png"
+                textComponent: client
+                textBold: true
+                textItalic: false
             }
             
-            AppText
-            {
+            InfoCustomerComponent {
                 id: addressAppText
-                height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
-                color: "white"
-                text: address
+                anchors.left: parent.left
+                anchors.right: parent.right
+                sourceImage: "../images/location.png"
+                textComponent: address
+                textBold: true
+                textItalic: false
             }
 
-            AppText
-            {
+            InfoCustomerComponent {
                 id: phoneAppText
-                height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
-                color: "white"
-                text: phone
-                font.italic: true
+                anchors.left: parent.left
+                anchors.right: parent.right
+                sourceImage: "../images/telephone.png"
+                textComponent: phone
+                textBold: false
+                textItalic: true
             }
+
+//            AppText
+//            {
+//                id: phoneAppText
+//                height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
+//                color: "white"
+//                text: phone
+//                font.italic: true
+//            }
         }
         MouseArea{
             anchors.fill: parent
             visible: delegate.isRemoveRectVisible
             onReleased:
                 if(delegate.isRemoveRectVisible)
-                            delegate.isRemoveRectVisible = false
+                    delegate.isRemoveRectVisible = false
         }
         MouseArea{
             anchors.fill: parent
@@ -132,7 +140,7 @@ Rectangle{
                 anchors.fill: parent
                 onReleased: console.log("you want remove order")
             }
-        }        
+        }
         state: "shown"
         states: [
             State {
@@ -149,7 +157,7 @@ Rectangle{
         transitions: Transition {
             PropertyAnimation { property: "width"; duration: 500; easing.type: Easing.InOutQuad }
         }
-    }    
+    }
     Timer{
         id: timerRemoveOrders
         interval: 2000

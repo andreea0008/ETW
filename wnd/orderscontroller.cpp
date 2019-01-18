@@ -14,6 +14,7 @@ OrdersController::OrdersController(QObject *parent)
     roles_[Width] = "Width";
     roles_[Height] = "Height";
     roles_[Description] = "Description";
+    AllOrders::Instance()->getOrders();
 }
 
 OrdersController::~OrdersController()
@@ -34,7 +35,7 @@ QModelIndex OrdersController::parent(const QModelIndex &child) const
 
 int OrdersController::rowCount(const QModelIndex &parent) const
 {
-    return parent.isValid() ? 0 : orders_.size();
+    return parent.isValid() ? 0 : AllOrders::Instance()->getOrders().size();
 }
 
 int OrdersController::columnCount(const QModelIndex &parent) const
@@ -44,10 +45,10 @@ int OrdersController::columnCount(const QModelIndex &parent) const
 
 QVariant OrdersController::data(const QModelIndex &index, int role) const
 {
-    if(!index.isValid() || index.column() != 0 || index.row() < 0 || index.row() > orders_.size())
+    if(!index.isValid() || index.column() != 0 || index.row() < 0 || index.row() > AllOrders::Instance()->getOrders().size())
         return QVariant();
 
-    auto currentOrder = orders_[index.row()];
+    auto currentOrder = AllOrders::Instance()->getOrders()[index.row()];
 
     switch (role) {
     case Name: return currentOrder->client.name;
@@ -67,16 +68,17 @@ QHash<int, QByteArray> OrdersController::roleNames() const
 
 void OrdersController::addOrder(QString idOrder, QString name, QString city, QString street, QString phone)
 {
-    beginInsertRows(QModelIndex(), orders_.size(), orders_.size());
+    beginInsertRows(QModelIndex(), AllOrders::Instance()->getOrders().size(), AllOrders::Instance()->getOrders().size());
     Order *order = new Order();
     order->idOrder = idOrder.toInt();
     order->client.name = name;
     order->client.city = city;
     order->client.street = street;
     order->client.phone = phone;
-    orders_.push_back(order);
+    AllOrders::Instance()->getOrders().push_back(order);
+    auto countOrders = AllOrders::Instance()->getOrders().size();
     AllOrders::Instance()->addNewOrder(order);
-    AllOrders::Instance()->setCurrentIndex(AllOrders::Instance()->getOrders().size() -1);
+    AllOrders::Instance()->setCurrentIndex(countOrders);
     endInsertRows();
 }
 
@@ -89,7 +91,6 @@ void OrdersController::setCurrentInderOrder(int currentInderOrder)
 {
     if (currentInderOrder_ == currentInderOrder)
         return;
-    qDebug() << "Set cuurent index " << currentInderOrder;
     AllOrders::Instance()->setCurrentIndex(currentInderOrder);
     currentInderOrder_ = currentInderOrder;
     emit currentInderOrderChanged(currentInderOrder_);

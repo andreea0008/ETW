@@ -126,7 +126,12 @@ Page {
                     Layout.fillWidth: true
                     color: "white"
                     placeholderText: "+1-333-444-5555"
+                    onInputMaskChanged: console.log("input change")
                     background: TextFieldStayle {}
+                    onTextChanged:
+                    {
+
+                    }
                 }
             }
 
