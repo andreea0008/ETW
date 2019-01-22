@@ -14,6 +14,11 @@ Page {
     property int spaceHeight: Theme.listItem.minimumHeight / 2
     property int minimumWidthText: width * 0.2
 
+    onVisibleChanged:
+    {
+        if(visible)
+            DecorationController.update()
+    }
 
     Rectangle
     {

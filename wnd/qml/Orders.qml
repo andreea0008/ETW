@@ -46,7 +46,7 @@ Page {
                 clip: true
                 spacing: 1
 
-                delegate: MainDelegate {
+                delegate: OrderDelegate {
                     id: delegate
                     color: "#0d0d0d"
                     width: parent.width
@@ -58,6 +58,8 @@ Page {
                     {
                         console.log("open property order show")
                         OrderController.setCurrentInderOrder(index)
+                        DecorationController.update()
+                        stackViewOrders.push(Qt.resolvedUrl("DecorationsOrderPage.qml"))
                     }
                 }
             }

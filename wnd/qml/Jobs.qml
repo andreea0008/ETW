@@ -46,7 +46,7 @@ Page {
                     phone: Phone
                     onPushToStackView:
                     {
-                        stackViewJobs.push(Qt.resolvedUrl("JobsPotential.qml"))
+                        stackViewJobs.push(Qt.resolvedUrl("JobsPotential.qml"), {name : Name, address : Address, phone : Phone})
                     }
                 }
             }

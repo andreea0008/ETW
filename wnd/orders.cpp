@@ -19,7 +19,7 @@ AllOrders::AllOrders()
     dec1Client1.typeWindow = "Bow window";
     Decoration dec1Client2;
     dec1Client2.description = "fsdfdsf";
-    dec1Client2.height = "344";
+    dec1Client2.height = "132";
     dec1Client2.width = "500";
     dec1Client2.typeWindow = "Vinyl window";
     dec1Client2.typeWindow = "Bow window";

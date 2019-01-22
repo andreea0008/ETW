@@ -44,6 +44,7 @@ Rectangle{
             anchors.left: itemPriority.right
             anchors.right: parent.right
             height: nameAppText.height + addressAppText.height
+
             AppText
             {
                 id: nameAppText

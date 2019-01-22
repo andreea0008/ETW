@@ -19,7 +19,7 @@ GameWindow {
          Theme.navigationBar.backgroundColor = "#2b2b2b"
          Theme.navigationBar.titleColor = "white"
          Theme.navigationBar.dividerColor = "#2b2b2b"
-
+        Theme.navigationBar.height = 0
          // Set the background color, which is used as background color of pages
          Theme.colors.backgroundColor = "#222"
 

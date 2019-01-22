@@ -7,8 +7,19 @@ import QtLocation 5.5
 import QtPositioning 5.5
 import Qt.labs.settings 1.0
 import QtQuick.XmlListModel 2.0
+import "components"
 
 Page {
+    id: page
+
+    property bool showMap: false
+    property string name: "Name"
+    property string address: "Address"
+    property string phone: "+1----"
+
+
+    state: "show_contact"
+
     Rectangle
     {
         anchors.fill: parent
@@ -104,14 +115,15 @@ Page {
       }
     }
 
-
     AppMap {
       id: map
 
       anchors.top: addOrderItem.bottom
-      anchors.left: parent.left
-      anchors.right: parent.right
-      anchors.bottom: parent.bottom
+      width: parent.width
+      height: parent.height /2
+//      anchors.left: parent.left
+//      anchors.right: parent.right
+//      anchors.bottom: parent.bottom
 
       showUserPosition: true
 
@@ -142,7 +154,10 @@ Page {
 
       onMapClicked: {
         // Clicked on map, remove current selection
-        page.selectedIndex = -1
+//        page.selectedIndex = -1
+          console.log("map_clicked")
+          if(!showMap)
+                showMap = true
       }
 
       onUserPositionChanged: {
@@ -194,4 +209,78 @@ Page {
         }
       }
     }
+
+    Rectangle
+    {
+        id: contact
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        height: parent.height / 2
+        color: "#2b2b2b"
+
+        MouseArea
+        {
+            visible: showMap
+            anchors.fill: parent
+            onPressed: showMap = false
+        }
+
+        Column{
+            id: column
+            anchors.fill: parent
+            anchors.margins: Theme.listItem.minimumHeight
+            InfoCustomerComponent {
+                id: nameCustomer
+                anchors.left: parent.left
+                anchors.right: parent.right
+                sourceImage: "../images/avatar.png"
+                textComponent: page.name
+                textBold: true
+                textItalic: false
+            }
+
+            InfoCustomerComponent {
+                id: addressAppText
+                anchors.left: parent.left
+                anchors.right: parent.right
+                sourceImage: "../images/location.png"
+                textComponent: page.address
+                textBold: true
+                textItalic: false
+            }
+
+            InfoCustomerComponent {
+                id: phoneAppText
+                anchors.left: parent.left
+                anchors.right: parent.right
+                sourceImage: "../images/telephone.png"
+                textComponent: page.phone
+                textBold: true
+                textItalic: false
+            }
+        }
+    }
+
+
+    states: [
+        State {
+            name: "show_map"
+            when: showMap
+            PropertyChanges { target: map; height: page.height* 0.75 }
+            PropertyChanges { target: contact; height: page.height* 0.25 }
+        },
+        State {
+            name: "show_contact"
+            when: !showMap
+            PropertyChanges { target: map; height: page.height* 0.25 }
+            PropertyChanges { target: contact; height: page.height* 0.75 }
+
+        }
+    ]
+
+    transitions: Transition {
+        PropertyAnimation { property: "height"; duration: 500; easing.type: Easing.InOutQuad }
+    }
+
 }

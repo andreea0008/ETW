@@ -2,6 +2,8 @@ import VPlayApps 1.0
 import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
+import QtQuick.Layouts 1.3
+import "../components"
 
 Rectangle{
     id: delegate
@@ -11,10 +13,9 @@ Rectangle{
     property bool isRemoveRectVisible: false
     property bool isCanRemove: false
     property alias refRectPriority: rectPriority.visible
-    property string type: ""
-    property string typeWindow: ""
-    property string widthDecoration: "0"
-    property string heightDecoration: "0"
+    property string client: "CLIENT"
+    property string address: "Address"
+    property string phone: "Phone"
 
     signal pushToStackView()
 
@@ -45,51 +46,25 @@ Rectangle{
             id: column
             anchors.left: itemPriority.right
             anchors.right: parent.right
-            height: nameAppText.height + addressAppText.height + widthAndHeight.height
-            AppText
-            {
-                id: nameAppText
-                height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
-                color: "white"
-                text: type
+            height: nameCustomer.height * 2
+            InfoCustomerComponent {
+                id: nameCustomer
+                anchors.left: parent.left
+                anchors.right: parent.right
+                sourceImage: "../images/avatar.png"
+                textComponent: client
+                textBold: true
+                textItalic: false
             }
             
-            AppText
-            {
+            InfoCustomerComponent {
                 id: addressAppText
-                height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
-                color: "white"
-                text: typeWindow
-            }
-
-            Item
-            {
-                id: widthAndHeight
-                width: parent.width
-                height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
-
-                Item{
-                    anchors.left: parent.left
-                    anchors.right: parent.horizontalCenter
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    AppText
-                    {
-                        anchors.centerIn: parent
-                        text: "W: " + widthDecoration
-                    }
-                }
-                Item{
-                    anchors.left: parent.horizontalCenter
-                    anchors.right: parent.right
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    AppText
-                    {
-                        anchors.centerIn: parent
-                        text: "H:" +  heightDecoration
-                    }
-                }
+                anchors.left: parent.left
+                anchors.right: parent.right
+                sourceImage: "../images/location.png"
+                textComponent: address
+                textBold: true
+                textItalic: false
             }
         }
         MouseArea{
@@ -97,7 +72,7 @@ Rectangle{
             visible: delegate.isRemoveRectVisible
             onReleased:
                 if(delegate.isRemoveRectVisible)
-                            delegate.isRemoveRectVisible = false
+                    delegate.isRemoveRectVisible = false
         }
         MouseArea{
             anchors.fill: parent
@@ -110,6 +85,7 @@ Rectangle{
             }
             
             onPressed: {
+                console.log("pressed_delegate")
                 if(!delegate.isRemoveRectVisible){
                     delegate.opacity = 0.8
                     if(isCanRemove)
@@ -145,7 +121,7 @@ Rectangle{
                 anchors.fill: parent
                 onReleased: console.log("you want remove order")
             }
-        }        
+        }
         state: "shown"
         states: [
             State {
@@ -162,7 +138,7 @@ Rectangle{
         transitions: Transition {
             PropertyAnimation { property: "width"; duration: 500; easing.type: Easing.InOutQuad }
         }
-    }    
+    }
     Timer{
         id: timerRemoveOrders
         interval: 2000

@@ -62,8 +62,10 @@ DISTFILES += \
     qml/NewOrderPage1.qml \
     qml/NewOrderPage2.qml \
     qml/NewOrderPage3.qml \
-    qml/delegates/DecorationDelegate.qml
-    qml/delegates/JobDelegate.qml
+    qml/delegates/DecorationDelegate.qml \
+    qml/delegates/JobDelegate.qml \
+    qml/delegates/OrderDelegate.qml \
+    qml/delegates/DecorationsOrderPage.qml \
     qml/jsScripts/functonsForQml.js
 
 HEADERS += \

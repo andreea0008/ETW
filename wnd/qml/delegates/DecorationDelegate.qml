@@ -46,6 +46,8 @@ Rectangle{
             anchors.left: itemPriority.right
             anchors.right: parent.right
             height: nameAppText.height + addressAppText.height + widthAndHeight.height
+
+
             AppText
             {
                 id: nameAppText
@@ -57,7 +59,7 @@ Rectangle{
             AppText
             {
                 id: addressAppText
-                height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
+                height: typeWindow !== 0 ? (!Theme.listItem ? Theme.listItem.minimumHeight : 24) : 0
                 color: "white"
                 text: typeWindow
             }
@@ -68,7 +70,7 @@ Rectangle{
                 width: parent.width
                 height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
 
-                Item{
+                Rectangle{
                     anchors.left: parent.left
                     anchors.right: parent.horizontalCenter
                     anchors.top: parent.top

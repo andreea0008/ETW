@@ -47,6 +47,7 @@ Rectangle{
             anchors.left: itemPriority.right
             anchors.right: parent.right
             height: nameCustomer.height * 3
+
             InfoCustomerComponent {
                 id: nameCustomer
                 anchors.left: parent.left
@@ -63,7 +64,7 @@ Rectangle{
                 anchors.right: parent.right
                 sourceImage: "../images/location.png"
                 textComponent: address
-                textBold: true
+                textBold: false
                 textItalic: false
             }
 
@@ -76,16 +77,8 @@ Rectangle{
                 textBold: false
                 textItalic: true
             }
-
-//            AppText
-//            {
-//                id: phoneAppText
-//                height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
-//                color: "white"
-//                text: phone
-//                font.italic: true
-//            }
         }
+
         MouseArea{
             anchors.fill: parent
             visible: delegate.isRemoveRectVisible
@@ -93,6 +86,7 @@ Rectangle{
                 if(delegate.isRemoveRectVisible)
                     delegate.isRemoveRectVisible = false
         }
+
         MouseArea{
             anchors.fill: parent
             visible: !delegate.isRemoveRectVisible
@@ -116,10 +110,10 @@ Rectangle{
                 timerRemoveOrders.stop()
                 if(!delegate.isRemoveRectVisible)
                     pushToStackView()
-
             }
         }
     }
+
     Rectangle
     {
         id: rectRemoveButton
@@ -158,6 +152,7 @@ Rectangle{
             PropertyAnimation { property: "width"; duration: 500; easing.type: Easing.InOutQuad }
         }
     }
+
     Timer{
         id: timerRemoveOrders
         interval: 2000
