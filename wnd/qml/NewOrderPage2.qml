@@ -77,7 +77,6 @@ Page {
                 widthDecoration: Width
                 heightDecoration: Height
                 isCanRemove: false
-                refRectPriority: false
                 onPushToStackView: console.log("newOrderPage2")
             }
         }

@@ -10,7 +10,6 @@ Rectangle{
 
     property bool isRemoveRectVisible: false
     property bool isCanRemove: false
-    property alias refRectPriority: rectPriority.visible
     property string type: ""
     property string typeWindow: ""
     property string widthDecoration: "0"
@@ -24,53 +23,38 @@ Rectangle{
         anchors.right: rectRemoveButton.left
         height: parent.height
         
-        Item{
-            id: itemPriority
-            width: parent.width * 0.1
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            
-            Rectangle{
-                id: rectPriority
-                anchors.centerIn: parent
-                width: parent.width /2
-                height: width
-                color: "red"
-                radius: width/2
-            }
-            
-        }
-
-        Column{
+       Column{
             id: column
-            anchors.left: itemPriority.right
-            anchors.right: parent.right
-            height: nameAppText.height + addressAppText.height + widthAndHeight.height
-
+            anchors.fill: parent
+            height: typeAppText.height + typeWindowAppText.height + widthAndHeight.height
+            onVisibleChanged: console.log(typeAppText.height, typeWindowAppText.height, widthAndHeight.height,
+                                          typeWindow.length != 0, typeWindow.length, typeWindow)
 
             AppText
             {
-                id: nameAppText
-                height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
+                id: typeAppText
+                height: !Theme.listItem ? Theme.listItem.minimumHeight : 42
                 color: "white"
                 text: type
+                verticalAlignment: Text.AlignVCenter
             }
             
             AppText
             {
-                id: addressAppText
-                height: typeWindow !== 0 ? (!Theme.listItem ? Theme.listItem.minimumHeight : 24) : 0
+                id: typeWindowAppText
+                height: typeWindow.length != 0 ? (!Theme.listItem ? Theme.listItem.minimumHeight : 42) : 0
                 color: "white"
                 text: typeWindow
+                verticalAlignment: Text.AlignVCenter
             }
 
             Item
             {
                 id: widthAndHeight
                 width: parent.width
-                height: !Theme.listItem ? Theme.listItem.minimumHeight : 24
+                height: !Theme.listItem ? Theme.listItem.minimumHeight : 42
 
-                Rectangle{
+                Item{
                     anchors.left: parent.left
                     anchors.right: parent.horizontalCenter
                     anchors.top: parent.top
@@ -127,6 +111,7 @@ Rectangle{
             }
         }
     }
+
     Rectangle
     {
         id: rectRemoveButton
@@ -165,6 +150,7 @@ Rectangle{
             PropertyAnimation { property: "width"; duration: 500; easing.type: Easing.InOutQuad }
         }
     }    
+
     Timer{
         id: timerRemoveOrders
         interval: 2000

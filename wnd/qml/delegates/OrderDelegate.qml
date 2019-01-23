@@ -70,6 +70,7 @@ Rectangle{
         MouseArea{
             anchors.fill: parent
             visible: delegate.isRemoveRectVisible
+
             onReleased:
                 if(delegate.isRemoveRectVisible)
                     delegate.isRemoveRectVisible = false
@@ -78,6 +79,7 @@ Rectangle{
             anchors.fill: parent
             visible: !delegate.isRemoveRectVisible
             hoverEnabled: true
+
             onExited:
             {
                 if(delegate.opacity === 0.8)
@@ -92,6 +94,7 @@ Rectangle{
                         timerRemoveOrders.start()
                 }
             }
+
             onReleased: {
                 delegate.opacity = 1.0
                 timerRemoveOrders.stop()

@@ -12,7 +12,7 @@ struct Client
 
 struct Decoration{
     QString type;
-    QString typeWindow = "";
+    QString typeWindow;
     QString width;
     QString height;
     QString description;

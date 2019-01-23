@@ -70,15 +70,15 @@ Page {
         // Add favs
         for (var i = 0; i < stationsModel.count; i++) {
           var station = stationsModel.get(i)
-          if (settings.favorites.indexOf(station.internalId) !== -1) {
-            append({
-                     internalId: station.internalId,
-                     name: station.name,
-                     freeBoxes: station.freeBoxes,
-                     freeBikes: station.freeBikes,
-                     favorited: settings.favorites.indexOf(station.internalId) !== -1
-                   })
-          }
+//          if (settings.favorites.indexOf(station.internalId) !== -1) {
+//            append({
+//                     internalId: station.internalId,
+//                     name: station.name,
+//                     freeBoxes: station.freeBoxes,
+//                     freeBikes: station.freeBikes,
+//                     favorited: settings.favorites.indexOf(station.internalId) !== -1
+//                   })
+//          }
         }
       }
 

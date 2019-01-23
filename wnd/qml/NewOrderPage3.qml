@@ -179,7 +179,11 @@ Page {
 
                     onClicked:
                     {
-                        DecorationController.addDecoration(typeWindowOrDoor.currentText, typeWindowComboBox.currentText, widthTextField.text, heightTextField.text, descriptionTextArea.text)
+                        DecorationController.addDecoration(typeWindowOrDoor.currentText,
+                                                           typeWindowComboBox.visible ? typeWindowComboBox.currentText : "",
+                                                           widthTextField.text,
+                                                           heightTextField.text,
+                                                           descriptionTextArea.text)
                         DecorationController.update();
                         stackViewOrders.pop()
                     }
