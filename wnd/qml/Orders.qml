@@ -3,10 +3,12 @@ import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 import "delegates"
+import "general"
 
 Page {
     property alias refStackViewOrders: stackViewOrders
 
+    General { id: general }
     AddOrderItem {
         id: addOrderItem
         visibleBackArrow: stackViewOrders.depth > 1
@@ -35,7 +37,7 @@ Page {
         initialItem: Rectangle{
             width: parent.width
             height: parent.height
-            color: "#2b2b2b"
+            color: general.white
 
             ListView
             {
@@ -46,9 +48,10 @@ Page {
                 clip: true
                 spacing: 1
 
+
                 delegate: OrderDelegate {
                     id: delegate
-                    color: "#0d0d0d"
+                    color: general.green
                     width: parent.width
                     isCanRemove: true
                     refRectPriority: false

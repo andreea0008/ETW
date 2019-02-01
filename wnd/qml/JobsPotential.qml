@@ -8,6 +8,7 @@ import QtPositioning 5.5
 import Qt.labs.settings 1.0
 import QtQuick.XmlListModel 2.0
 import "components"
+import "general"
 
 Page {
     id: page
@@ -17,13 +18,12 @@ Page {
     property string address: "Address"
     property string phone: "+1----"
 
-
     state: "show_contact"
-
+    General{id: general}
     Rectangle
     {
         anchors.fill: parent
-        color: "#2b2b2b"
+        color: general.green
     }
 
     AddOrderItem {
@@ -68,18 +68,18 @@ Page {
         updateNearest()
 
         // Add favs
-        for (var i = 0; i < stationsModel.count; i++) {
-          var station = stationsModel.get(i)
-//          if (settings.favorites.indexOf(station.internalId) !== -1) {
-//            append({
-//                     internalId: station.internalId,
-//                     name: station.name,
-//                     freeBoxes: station.freeBoxes,
-//                     freeBikes: station.freeBikes,
-//                     favorited: settings.favorites.indexOf(station.internalId) !== -1
-//                   })
-//          }
-        }
+//        for (var i = 0; i < stationsModel.count; i++) {
+//          var station = stationsModel.get(i)
+////          if (settings.favorites.indexOf(station.internalId) !== -1) {
+////            append({
+////                     internalId: station.internalId,
+////                     name: station.name,
+////                     freeBoxes: station.freeBoxes,
+////                     freeBikes: station.freeBikes,
+////                     favorited: settings.favorites.indexOf(station.internalId) !== -1
+////                   })
+////          }
+//        }
       }
 
       function updateNearest() {
@@ -90,19 +90,19 @@ Page {
         var currentDistance = -1
         var currentIndex = -1
 
-        for (var i = 0; i < stationsModel.count; i++) {
-          var station = stationsModel.get(i)
+//        for (var i = 0; i < stationsModel.count; i++) {
+//          var station = stationsModel.get(i)
 
-          var distance = map.userPosition.coordinate.distanceTo(QtPositioning.coordinate(station.latitude, station.longitude))
-          if (currentDistance === -1 || distance < currentDistance) {
-            currentDistance = distance
-            currentIndex = i
-          }
-        }
+//          var distance = map.userPosition.coordinate.distanceTo(QtPositioning.coordinate(station.latitude, station.longitude))
+//          if (currentDistance === -1 || distance < currentDistance) {
+//            currentDistance = distance
+//            currentIndex = i
+//          }
+//        }
 
         // Get station
-        if (currentIndex !== -1) {
-          var station = stationsModel.get(currentIndex)
+//        if (currentIndex !== -1) {
+//          var station = stationsModel.get(currentIndex)
 
           set(0, {
                 internalId: station.internalId,
@@ -112,7 +112,7 @@ Page {
                 favorited: settings.favorites.indexOf(station.internalId) !== -1
               })
         }
-      }
+//      }
     }
 
     AppMap {
@@ -144,11 +144,11 @@ Page {
           }]
       }
 
-      // Defaults to Vienna, AT
-      center: QtPositioning.coordinate(48.208417, 16.372472)
+      // Defaults to Toronto, CA
+      center: QtPositioning.coordinate(43.724856, -79.332393)
       zoomLevel: 15
       Component.onCompleted: {
-        map.center = QtPositioning.coordinate(48.208417, 16.372472)
+        map.center = QtPositioning.coordinate(43.724856, -79.332393)
         map.zoomLevel = 15
       }
 
@@ -165,49 +165,49 @@ Page {
       }
 
       // Station markers
-      MapItemView {
-        model: stationsModel
+//      MapItemView {
+//        model: stationsModel
 
-        delegate: MapQuickItem {
-          coordinate: QtPositioning.coordinate(latitude, longitude)
+//        delegate: MapQuickItem {
+//          coordinate: QtPositioning.coordinate(latitude, longitude)
 
-          anchorPoint.x: image.width * 0.5
-          anchorPoint.y: image.height
+//          anchorPoint.x: image.width * 0.5
+//          anchorPoint.y: image.height
 
-          sourceItem: AppImage {
-            id: image
+//          sourceItem: AppImage {
+//            id: image
 
-            width: dp(40)
-            height: dp(34)
+//            width: dp(40)
+//            height: dp(34)
 
-            source: {
-              // Inactive
-              if (availability !== "aktiv") {
-                return "../assets/pin-grey.png"
-              }
+//            source: {
+//              // Inactive
+//              if (availability !== "aktiv") {
+//                return "../assets/pin-grey.png"
+//              }
 
-              var freeItems = 2//page.displayFreeBikes ? freeBikes : freeBoxes
+//              var freeItems = 2//page.displayFreeBikes ? freeBikes : freeBoxes
 
-              if (freeItems === 0) {
-                return "../assets/pin-red.png"
-              }
-              else if (freeItems <= 2) {
-                return "../assets/pin-orange.png"
-              }
-              else {
-                return "../assets/pin-green.png"
-              }
-            }
+//              if (freeItems === 0) {
+//                return "../assets/pin-red.png"
+//              }
+//              else if (freeItems <= 2) {
+//                return "../assets/pin-orange.png"
+//              }
+//              else {
+//                return "../assets/pin-green.png"
+//              }
+//            }
 
-            MouseArea {
-              anchors.fill: parent
-              onClicked: {
-                page.selectedIndex = index
-              }
-            }
-          }
-        }
-      }
+//            MouseArea {
+//              anchors.fill: parent
+//              onClicked: {
+//                page.selectedIndex = index
+//              }
+//            }
+//          }
+//        }
+//      }
     }
 
     Rectangle
@@ -217,7 +217,7 @@ Page {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         height: parent.height / 2
-        color: "#2b2b2b"
+        color: general.green
 
         MouseArea
         {

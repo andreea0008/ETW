@@ -6,17 +6,18 @@ import QtQuick.Layouts 1.11
 import QtQuick.Controls.Styles 1.4
 import "delegates"
 import "styles"
+import "general"
 
 Page {
     id: pageNewOrder1
     property int margin: pageNewOrder1.width * 0.1
     property int spaceHeight: Theme.listItem.minimumHeight / 2
     property int minimumWidthText: width * 0.2
-
+    General{ id: general }
     Rectangle
     {
         anchors.fill: parent
-        color: "#2b2b2b"
+        color: general.white
 
         Column
         {
@@ -26,6 +27,7 @@ Page {
             {
                 id: orderId
                 text: parent.generateOrderNumber()
+                color: general.black
             }
 
             Item{
@@ -41,6 +43,7 @@ Page {
                 {
                     text: "Name:"
                     Layout.minimumWidth: minimumWidthText
+                    color: general.black
                 }
 
                 TextField
@@ -67,6 +70,7 @@ Page {
                 {
                     text: "Street: "
                     Layout.minimumWidth: minimumWidthText
+                    color: general.black
                 }
 
                 TextField
@@ -93,6 +97,7 @@ Page {
                 {
                     text: "City: "
                     Layout.minimumWidth: minimumWidthText
+                    color: general.black
                 }
 
                 TextField
@@ -118,6 +123,7 @@ Page {
                 {
                     text: "Phone: "
                     Layout.minimumWidth: minimumWidthText
+                    color: general.black
                 }
 
                 TextField
@@ -159,7 +165,7 @@ Page {
                 {
                     implicitHeight: 30
                     implicitWidth: 100
-                    color: "#00b894"
+                    color: general.greenLight
                     opacity: parent.pressed ? 0.8 : 1.0
                 }
 

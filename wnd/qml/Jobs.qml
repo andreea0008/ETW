@@ -3,13 +3,16 @@ import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 import "delegates"
+import "general"
 
 Page {
-    Rectangle
-    {
-        anchors.fill: parent
-        color: "#2b2b2b"
-    }
+    General{id: general}
+
+//    Rectangle
+//    {
+//        anchors.fill: parent
+//        color: general.white
+//    }
     StackView{
         id: stackViewJobs
         anchors.fill: parent
@@ -24,8 +27,7 @@ Page {
         initialItem: Rectangle{
             width: parent.width
             height: parent.height
-            color: "#2b2b2b"
-
+            color: general.white
             ListView
             {
                 id: list
@@ -37,7 +39,8 @@ Page {
 
                 delegate: JobDelegate {
                     id: delegate
-                    color: "#0d0d0d"
+
+                    color: general.green
                     width: parent.width
                     isCanRemove: false
                     refRectPriority: false

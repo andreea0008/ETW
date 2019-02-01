@@ -34,16 +34,17 @@ Rectangle{
             {
                 id: typeAppText
                 height: !Theme.listItem ? Theme.listItem.minimumHeight : 42
-                color: "white"
+                color: general.black
                 text: type
                 verticalAlignment: Text.AlignVCenter
+
             }
             
             AppText
             {
                 id: typeWindowAppText
                 height: typeWindow.length != 0 ? (!Theme.listItem ? Theme.listItem.minimumHeight : 42) : 0
-                color: "white"
+                color: general.black
                 text: typeWindow
                 verticalAlignment: Text.AlignVCenter
             }
@@ -62,6 +63,7 @@ Rectangle{
                     AppText
                     {
                         anchors.centerIn: parent
+                        color: general.black
                         text: "W: " + widthDecoration
                     }
                 }
@@ -73,6 +75,7 @@ Rectangle{
                     AppText
                     {
                         anchors.centerIn: parent
+                        color: general.black
                         text: "H:" +  heightDecoration
                     }
                 }

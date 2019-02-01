@@ -7,18 +7,19 @@ import QtQuick.Controls.Styles 1.4
 import "delegates"
 import "styles"
 import "components"
+import "general"
 
 Page {
     id: pageNewOrder2
     property int margin: pageNewOrder2.width * 0.1
     property int spaceHeight: Theme.listItem.minimumHeight / 2
     property int minimumWidthText: width * 0.2
-
+    General{ id: general }
 
     Rectangle
     {
         anchors.fill: parent
-        color: "#2b2b2b"
+        color: general.white
         ListView
         {
             anchors.fill: parent
@@ -27,7 +28,7 @@ Page {
             spacing: 1
             delegate: DecorationDelegate {
                 id: delegate
-                color: "#0d0d0d"
+                color: general.green
                 width: parent.width
                 type: Type
                 typeWindow: TypeWindow

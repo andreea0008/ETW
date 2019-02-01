@@ -7,7 +7,7 @@ import QtQuick.Controls.Styles 1.4
 import "delegates"
 import "styles"
 import "components"
-
+import "general"
 
 Page {
     id: pageNewOrder2
@@ -15,10 +15,12 @@ Page {
     property int spaceHeight: Theme.listItem.minimumHeight / 2
     property int minimumWidthText: width * 0.2
     property string idOrder: ""
+    General { id: general }
+
     Rectangle
     {
         anchors.fill: parent
-        color: "#2b2b2b"
+        color: general.white
 
         Column
         {
@@ -31,8 +33,9 @@ Page {
                 anchors.right: parent.right
                 AppText
                 {
-                    text: "Type:"
+                    text: "Type"
                     Layout.minimumWidth: minimumWidthText
+                    color: general.black
                 }
 
                 SelectComboBox {
@@ -57,8 +60,9 @@ Page {
                 anchors.right: parent.right
                 AppText
                 {
-                    text: "Window type:"
+                    text: "Wnd. type"
                     Layout.minimumWidth: minimumWidthText
+                    color: general.black
                 }
 
                 SelectComboBox {
@@ -80,8 +84,9 @@ Page {
                 anchors.right: parent.right
                 AppText
                 {
-                    text: "Width:"
+                    text: "Width "
                     Layout.minimumWidth: minimumWidthText
+                    color: general.black
                 }
 
                 TextField
@@ -105,8 +110,9 @@ Page {
                 anchors.right: parent.right
                 AppText
                 {
-                    text: "Height:"
+                    text: "Height "
                     Layout.minimumWidth: minimumWidthText
+                    color: general.black
                 }
 
                 TextField
@@ -132,6 +138,7 @@ Page {
                 {
                     text: "Description:"
                     Layout.minimumWidth: minimumWidthText
+                    color: general.black
                 }
             }
 
@@ -173,7 +180,7 @@ Page {
                     {
                         implicitHeight: 30
                         implicitWidth: 100
-                        color: "#00b894"
+                        color: general.green
                         opacity: parent.pressed ? 0.8 : 1.0
                     }
 

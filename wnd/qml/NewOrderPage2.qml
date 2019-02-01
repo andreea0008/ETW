@@ -7,6 +7,7 @@ import QtQuick.Controls.Styles 1.4
 import "delegates"
 import "styles"
 import "components"
+import "general"
 
 Page {
     id: pageNewOrder2
@@ -20,10 +21,11 @@ Page {
             DecorationController.update()
     }
 
+    General { id: general }
     Rectangle
     {
         anchors.fill: parent
-        color: "#2b2b2b"
+        color: general.white
         Button
         {
             id: addNewItem
@@ -48,7 +50,7 @@ Page {
             {
                 implicitHeight: 30
                 implicitWidth: 100
-                color: "#00b894"
+                color: general.green
                 opacity: parent.pressed ? 0.8 : 1.0
             }
 
