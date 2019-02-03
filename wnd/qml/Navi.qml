@@ -2,6 +2,7 @@ import VPlayApps 1.0
 import QtQuick 2.0
 import "delegates"
 import "styles"
+import "general"
 Page {
     id: page
     useSafeArea: true

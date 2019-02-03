@@ -13,7 +13,7 @@ Page {
     property int margin: pageNewOrder1.width * 0.1
     property int spaceHeight: Theme.listItem.minimumHeight / 2
     property int minimumWidthText: width * 0.2
-    General{ id: general }
+
     Rectangle
     {
         anchors.fill: parent
@@ -50,7 +50,7 @@ Page {
                 {
                     id: nameClientTextField
                     Layout.fillWidth: true
-                    color: "white"
+                    color: general.black
                     placeholderText: "Name client"
                     background: TextFieldStayle {}
                     onTextChanged: orderId.text = parent.parent.generateOrderNumber();
@@ -77,7 +77,7 @@ Page {
                 {
                     id: streetTextField
                     Layout.fillWidth: true
-                    color: "white"
+                    color: general.black
                     placeholderText: "Street of client"
                     background: TextFieldStayle {}
 
@@ -105,7 +105,7 @@ Page {
                     id: cityTextField
                     Layout.fillWidth: true
                     placeholderText: "City of client"
-                    color: "white"
+                    color: general.black
                     background: TextFieldStayle {}
                 }
             }
@@ -130,7 +130,7 @@ Page {
                 {
                     id: phoneTextField
                     Layout.fillWidth: true
-                    color: "white"
+                    color: general.black
                     placeholderText: "+1-333-444-5555"
                     onInputMaskChanged: console.log("input change")
                     background: TextFieldStayle {}
@@ -174,6 +174,7 @@ Page {
                     OrderController.addOrder(orderId.text, nameClientTextField.text,
                                              cityTextField.text, streetTextField.text,
                                              phoneTextField.text)
+                    DecorationController.update()
                     addOrderItem.visibleAddButton = false
                     stackViewOrders.push(Qt.resolvedUrl("NewOrderPage2.qml"))
                 }
@@ -183,7 +184,7 @@ Page {
             {
                 var today = new Date();
                 var dd = today.getDate();
-                var textOrder = "Order #: " + new Date().toJSON().slice(0,10).replace(/-/g,'/') + nameClientTextField.text;
+                var textOrder = "Order #: " + new Date().toJSON().slice(0,10).replace(/-/g,'/') + " - " + nameClientTextField.text;
                 return textOrder
             }
         }

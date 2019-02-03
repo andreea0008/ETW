@@ -72,7 +72,7 @@ Page {
             clip: true
             delegate: DecorationDelegate {
                 id: delegate
-                color: "#0d0d0d"
+                color: general.green
                 width: parent.width
                 type: Type
                 typeWindow: TypeWindow

@@ -17,9 +17,8 @@ Page {
     property string name: "Name"
     property string address: "Address"
     property string phone: "+1----"
-
     state: "show_contact"
-    General{id: general}
+//    General{id: general}
     Rectangle
     {
         anchors.fill: parent
@@ -229,7 +228,7 @@ Page {
         Column{
             id: column
             anchors.fill: parent
-            anchors.margins: Theme.listItem.minimumHeight
+            anchors.margins: Theme.listItem.minimumHeight/2
             InfoCustomerComponent {
                 id: nameCustomer
                 anchors.left: parent.left
@@ -246,8 +245,9 @@ Page {
                 anchors.right: parent.right
                 sourceImage: "../images/location.png"
                 textComponent: page.address
-                textBold: true
+                textBold: false
                 textItalic: false
+                koefPixelSize: 0.8
             }
 
             InfoCustomerComponent {
@@ -256,8 +256,10 @@ Page {
                 anchors.right: parent.right
                 sourceImage: "../images/telephone.png"
                 textComponent: page.phone
-                textBold: true
-                textItalic: false
+                textBold: false
+                textItalic: true
+                koefPixelSize: 0.8
+                isPhone: true
             }
         }
     }

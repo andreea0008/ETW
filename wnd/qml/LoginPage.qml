@@ -2,29 +2,25 @@ import VPlayApps 1.0
 import VPlay 2.0
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
-
+import "general"
 
 Page {
-    id: loginPage
-    title: "Login"
+    id: loginPage    
     signal loginSucceeded
-
-    backgroundColor: Qt.rgba(0,0,0, 0.75) // page background is translucent, we can see other items beneath the page
 
     // login form background
     Rectangle {
         id: loginForm
         anchors.centerIn: parent
-        color: "#0d0d0d"
+        color: "#158f43"
         width: content.width + dp(48)
         height: content.height + dp(16)
-        radius: dp(4)
     }
 
     // login form content
     GridLayout {
         id: content
-        anchors.centerIn: loginForm
+        anchors.centerIn: parent
         columnSpacing: dp(20)
         rowSpacing: dp(10)
         columns: 2
@@ -35,7 +31,7 @@ Page {
             Layout.bottomMargin: dp(12)
             Layout.columnSpan: 2
             Layout.alignment: Qt.AlignHCenter
-            color: "white"
+            color: general.white
             text: "Login"
         }
 
@@ -43,7 +39,7 @@ Page {
         AppText {
             text: qsTr("E-mail")
             font.pixelSize: sp(12)
-            color: "white"
+            color: general.white
         }
 
         AppTextField {
@@ -51,15 +47,18 @@ Page {
             Layout.preferredWidth: dp(200)
             showClearButton: true
             font.pixelSize: sp(14)
-            borderColor: Theme.tintColor
-            borderWidth: !Theme.isAndroid ? dp(2) : 0
+            backgroundColor: general.white
+            borderColor: general.black
+            textColor: general.black
+            radius: 2
+            borderWidth: 1
         }
 
         // password text and field
         AppText {
             text: qsTr("Password")
             font.pixelSize: sp(12)
-            color: "white"
+            color: general.white
         }
 
         AppTextField {
@@ -67,8 +66,11 @@ Page {
             Layout.preferredWidth: dp(200)
             showClearButton: true
             font.pixelSize: sp(14)
-            borderColor: Theme.tintColor
-            borderWidth: !Theme.isAndroid ? dp(2) : 0
+            backgroundColor: general.white
+            borderColor: general.black
+            textColor: general.black
+            borderWidth: 1
+            radius: 2
             echoMode: TextInput.Password
         }
 
@@ -81,7 +83,7 @@ Page {
             // buttons
             AppButton {
                 text: qsTr("Login")
-                textColor: "white"
+                textColor: general.white
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
                     loginPage.forceActiveFocus() // move focus away from text fields

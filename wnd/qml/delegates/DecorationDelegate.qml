@@ -26,25 +26,29 @@ Rectangle{
        Column{
             id: column
             anchors.fill: parent
-            height: typeAppText.height + typeWindowAppText.height + widthAndHeight.height
-            onVisibleChanged: console.log(typeAppText.height, typeWindowAppText.height, widthAndHeight.height,
-                                          typeWindow.length != 0, typeWindow.length, typeWindow)
+            anchors.leftMargin: !Theme.listItem ? Theme.listItem.minimumHeight : 42
+            anchors.rightMargin: !Theme.listItem ? Theme.listItem.minimumHeight : 42
+            height: typeWindowAppText.length !== 0 ? (typeAppText.height *3 ) : typeAppText.height * 2
 
             AppText
             {
                 id: typeAppText
                 height: !Theme.listItem ? Theme.listItem.minimumHeight : 42
-                color: general.black
+                color: general.white
                 text: type
                 verticalAlignment: Text.AlignVCenter
-
+                MouseArea{
+                    anchors.fill: parent
+                    onPressed:    console.log(typeAppText.height, typeWindowAppText.height, widthAndHeight.height,
+                                                               typeWindow.length != 0, typeWindow.length, typeWindow)
+                }
             }
             
             AppText
             {
                 id: typeWindowAppText
-                height: typeWindow.length != 0 ? (!Theme.listItem ? Theme.listItem.minimumHeight : 42) : 0
-                color: general.black
+                visible: typeWindow.length !== 0
+                color: general.white
                 text: typeWindow
                 verticalAlignment: Text.AlignVCenter
             }
@@ -63,7 +67,7 @@ Rectangle{
                     AppText
                     {
                         anchors.centerIn: parent
-                        color: general.black
+                        color: general.white
                         text: "W: " + widthDecoration
                     }
                 }
@@ -75,44 +79,52 @@ Rectangle{
                     AppText
                     {
                         anchors.centerIn: parent
-                        color: general.black
+                        color: general.white
                         text: "H:" +  heightDecoration
                     }
                 }
             }
         }
-        MouseArea{
-            anchors.fill: parent
-            visible: delegate.isRemoveRectVisible
-            onReleased:
-                if(delegate.isRemoveRectVisible)
-                            delegate.isRemoveRectVisible = false
-        }
-        MouseArea{
-            anchors.fill: parent
-            visible: !delegate.isRemoveRectVisible
-            hoverEnabled: true
-            onExited:
-            {
-                if(delegate.opacity === 0.8)
-                    delegate.opacity = 1.0
-            }
-            
-            onPressed: {
-                if(!delegate.isRemoveRectVisible){
-                    delegate.opacity = 0.8
-                    if(isCanRemove)
-                        timerRemoveOrders.start()
-                }
-            }
-            onReleased: {
-                delegate.opacity = 1.0
-                timerRemoveOrders.stop()
-                if(!delegate.isRemoveRectVisible)
-                    pushToStackView()
 
-            }
-        }
+       MouseArea
+       {
+           anchors.fill: parent
+           onClicked: console.log(column.height, typeAppText.height, typeWindowAppText.height, widthAndHeight.height,
+                                  typeWindow.length != 0, typeWindow.length, typeWindowAppText.length)
+       }
+
+//        MouseArea{
+//            anchors.fill: parent
+//            visible: delegate.isRemoveRectVisible
+//            onReleased:
+//                if(delegate.isRemoveRectVisible)
+//                            delegate.isRemoveRectVisible = false
+//        }
+//        MouseArea{
+//            anchors.fill: parent
+//            visible: !delegate.isRemoveRectVisible
+//            hoverEnabled: true
+//            onExited:
+//            {
+//                if(delegate.opacity === 0.8)
+//                    delegate.opacity = 1.0
+//            }
+            
+//            onPressed: {
+//                if(!delegate.isRemoveRectVisible){
+//                    delegate.opacity = 0.8
+//                    if(isCanRemove)
+//                        timerRemoveOrders.start()
+//                }
+//            }
+//            onReleased: {
+//                delegate.opacity = 1.0
+//                timerRemoveOrders.stop()
+//                if(!delegate.isRemoveRectVisible)
+//                    pushToStackView()
+
+//            }
+//        }
     }
 
     Rectangle

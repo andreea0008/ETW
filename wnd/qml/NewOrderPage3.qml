@@ -93,7 +93,7 @@ Page {
                 {
                     id: widthTextField
                     Layout.fillWidth: true
-                    color: "white"
+                    color: general.black
                     placeholderText: "Width"
                     background: TextFieldStayle {}
                 }
@@ -119,7 +119,7 @@ Page {
                 {
                     id: heightTextField
                     Layout.fillWidth: true
-                    color: "white"
+                    color: general.black
                     placeholderText: "Height"
                     background: TextFieldStayle {}
                 }
@@ -146,9 +146,11 @@ Page {
                 anchors.right: parent.right
                 anchors.left: parent.left
                 height: Theme.listItem.minimumHeight * 3
+                color: general.green
                 DescriptionTextArea {
                     id: descriptionTextArea
                     anchors.fill: parent
+                    anchors.margins: 1
                     height: 200
                 }
             }

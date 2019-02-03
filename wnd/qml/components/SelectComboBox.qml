@@ -15,13 +15,13 @@ ComboBox {
         background: Rectangle {
             id: rectCategory
             border.width: 1
-            border.color: "white"
-            color: "#2d3436"
+            border.color: general.green
+            color: general.white
         }
         label: Text {
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignLeft
-            color: "white"
+            color: general.black
             text: control.currentText
         }
 

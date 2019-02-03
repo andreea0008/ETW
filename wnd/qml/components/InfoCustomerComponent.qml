@@ -6,11 +6,14 @@ Row
 {
     height: (!Theme.listItem ? Theme.listItem.minimumHeight : 24) * 1.5
     spacing: (!Theme.listItem ? Theme.listItem.minimumHeight : 24) / 2
-    property string textComponent: "------"
+    property string textComponent: ""
     property string sourceImage: "../images/location.png"
     property bool textItalic: false
     property bool textBold: false
-    
+    property real koefPixelSize: 1.0
+    property int pixelHeight: (!Theme.listItem ? Theme.listItem.minimumHeight : 24) * koefPixelSize
+    property bool isPhone: false
+
     Item{
         anchors.verticalCenter: parent.verticalCenter
         height:  !Theme.listItem ? Theme.listItem.minimumHeight : 24
@@ -31,5 +34,15 @@ Row
         text: textComponent
         font.bold: textBold
         font.italic: textItalic
+        font.pixelSize: pixelHeight
+        MouseArea
+        {
+            anchors.fill: parent
+            visible: isPhone
+            onPressAndHold:{
+                console.log("call___")
+                Qt.openUrlExternally("tel:%1".arg(customerAppText.text))
+            }
+        }
     }
 }

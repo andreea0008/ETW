@@ -68,6 +68,9 @@ Page {
             }
         }
         function releaseStack(){
+            console.log("releaseStack", stackViewOrders.depth)
+            if(stackViewOrders.depth === 1)
+                addOrderItem.visibleAddButton = true
             if(stackViewOrders.depth > 1){
                 stackViewOrders.pop()
                 releaseStack();

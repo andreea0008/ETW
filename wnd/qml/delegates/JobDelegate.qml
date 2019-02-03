@@ -68,6 +68,7 @@ Rectangle{
                 textComponent: address
                 textBold: false
                 textItalic: false
+                koefPixelSize: 0.8
             }
 
             InfoCustomerComponent {
@@ -78,6 +79,8 @@ Rectangle{
                 textComponent: phone
                 textBold: false
                 textItalic: true
+                koefPixelSize: 0.8
+                isPhone: true
             }
         }
 
